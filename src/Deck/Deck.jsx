@@ -1,7 +1,8 @@
 // api : https://deckofcardsapi.com/api/deck/${deck_id}/draw/
 import axios from 'axios'
 import { useState, useEffect } from 'react';
-
+import Card from '../Card/Card';
+import {v4 as uuidv4} from 'uuid'
 
 const Deck = () => {
 
@@ -40,12 +41,16 @@ const Deck = () => {
       return 'No cards for you!'
     }
   }
+
+  const cards = cardsDrawn.map(card => (
+    <Card key={uuidv4()} name={card.code} img={card.image}/>
+  ))
   
   return ( 
     <>
       <h1>Card Dealer</h1>
       <button onClick={fetchCards}>Draw Card</button>
-      
+      <div>{cards}</div>
     </>
   );
 }
