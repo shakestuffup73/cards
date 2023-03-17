@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import {v4 as uuidv4} from 'uuid'
+import styles from './Deck.modules.css'
 
 const Deck = () => {
 
@@ -42,16 +43,31 @@ const Deck = () => {
     }
   }
 
-  const cards = cardsDrawn.map(card => (
+  const cards = cardsDrawn?.map(card => (
     <Card key={uuidv4()} name={card.code} img={card.image}/>
   ))
+
+  // function handleClick(){
+  //   setDeck(deck)
+  //   setCardsDrawn([])
+  // }
   
   return ( 
     <>
+    <div className={styles.containerDiv}>
+      {cardsDrawn.length !== 52 ?
+        <button onClick={fetchCards}>Draw Card</button>
+        : 
+        <>
+          <h2>All Cards Drawn</h2>
+          {/* <button onClick={handleClick}>Reset</button> */}
+        </>
+      }
       <h1>Card Dealer</h1>
-      <button onClick={fetchCards}>Draw Card</button>
-      <div>{cards}</div>
+      <div className={styles.cardContainer}>{cards}</div>
+    </div>
     </>
+
   );
 }
 
