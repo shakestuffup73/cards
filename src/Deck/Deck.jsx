@@ -56,7 +56,7 @@ const Deck = () => {
     <>
     <div className={styles.containerDiv}>
       {cardsDrawn.length !== 52 ?
-        <button onClick={fetchCards}>Draw Card</button>
+        <button onClick={fetchCards} className={styles.button}>Draw Card</button>
         : 
         <>
           <h2>All Cards Drawn</h2>
